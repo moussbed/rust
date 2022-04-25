@@ -1,55 +1,97 @@
 
 fn main() {
-    // Statements and Expressions
-    // Statements are instructions that perform some action and do not return a value.
-    // Expressions evaluate to a resulting value.
 
-    // Expression
-    let y = {
-        let x = 3;
-        x + 1
+    let number = 3;
+
+    if number < 5 {
+        println!("condition was true")
+    }else {
+        println!("condition was false")
+    }
+
+    // Using if in a let Statement
+
+    let condition = true;
+    let number = if condition { 5 } else { 6 }; // This means the values that have the potential to be results from each arm of the if must be the same type;
+
+    println!("The value of number is: {}", number);
+
+
+    // Repetition with Loops
+
+    // Repeating Code with loop
+
+    // The loop keyword tells Rust to execute a block of code over and over again forever or until you explicitly tell it to stop.
+    /*loop {
+        println!("again!");
+    }*/
+
+    let mut count = 0;
+    'counting_up: loop {
+        println!("count = {}", count);
+        let mut remaining = 10;
+
+        loop {
+            println!("remaining = {}", remaining);
+            if remaining == 9 {
+                break;
+            }
+            if count == 2 {
+                break 'counting_up;
+            }
+            remaining -= 1;
+        }
+
+        count += 1;
+    }
+    println!("End count = {}", count);
+
+
+
+    // Returning Values from Loops
+    let mut counter = 0;
+
+    let result = loop {
+        counter += 1;
+
+        if counter == 10 {
+            break counter * 2;
+        }
     };
-    /*
-    is a block that, in this case, evaluates to 4.
-    That value gets bound to y as part of the let statement.
-    Note that the x + 1 line doesn’t have a semicolon at the end, unlike most of the lines you’ve seen so far.
-    Expressions do not include ending semicolons.
-    If you add a semicolon to the end of an expression, you turn it into a statement, and it will then not return a value.
-    Keep this in mind as you explore function return values and expressions next.
-    */
 
-    println!("The value of y is: {}", y);
+    println!("The result is {}", result);
 
 
-    // Call of a function
-    let x = five();
-    println!("The value of x is: {}", x);
+   // Conditional Loops with while
 
-    let t = plus_one(5);
-    println!("The value of t is: {}", t);
-}
+    let mut number = 3;
 
-// Functions with Return Values
-/*
-   Functions can return values to the code that calls them.
-   We don’t name return values, but we must declare their type after an arrow (->).
-   In Rust, the return value of the function is synonymous with the value of the final expression in the block of the body of a function.
-   You can return early from a function by using the return keyword and specifying a value,
-   but most functions return the last expression implicitly.
-   Here’s an example of a function that returns a value:
- */
-/*
-   There are no function calls, macros,
-   or even let statements in the five function, just the number 5 by itself.
- */
-fn five() -> i32 {
-    5
-}
+    while number != 0 {
+        println!("{}!", number);
 
-/*
- But if we place a semicolon at the end of the line containing x + 1,
- changing it from an expression to a statement, we’ll get an error.
- */
-fn plus_one(x: i32) -> i32 {
-    x + 1
+        number -= 1;
+    }
+
+    println!("LIFTOFF!!!");
+
+
+    // Looping Through a Collection with for
+
+    let a = [10, 20, 30, 40, 50];
+    let mut index = 0;
+
+    while index < a.len(){
+        println!("the value is: {}", a[index]);
+
+        index += 1;
+    }
+
+    for element in a {
+        println!("the value is: {}", element);
+    }
+
+    for number in (1..4).rev() {
+        println!("{}!", number);
+    }
+    println!("LIFTOFF!!!");
 }
